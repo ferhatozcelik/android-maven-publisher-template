@@ -21,7 +21,7 @@ jobs:
           server-password: OSSRH_PASSWORD # Env var that holds your OSSRH user pw
           gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }} # Substituted with the value stored in the referenced secret
           gpg-passphrase: SIGN_KEY_PASS # Env var that holds the key's passphrase
-          cache: 'maven'
+          cache: 'gradle'
       - name: Build & Deploy
         run: |
           # -U force updates just to make sure we are using latest dependencies
