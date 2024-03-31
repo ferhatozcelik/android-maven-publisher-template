@@ -31,4 +31,4 @@ jobs:
         env:
           SIGN_KEY_PASS: ${{ secrets.GPG_PRIVATE_KEY_PASSPHRASE }}
           OSSRH_USERNAME: ${{ secrets.SONATYPE_USER }}
-          OSSRH_PASSWORD: ${{ secrets.SONATYPE_PW }}e
+          OSSRH_PASSWORD: ${{ secrets.SONATYPE_PW }}
