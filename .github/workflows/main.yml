@@ -54,11 +54,6 @@ jobs:
           USERNAME: ${{ github.actor }}
           PASSWORD: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Checkout master
-        uses: actions/checkout@v4
-        with:
-          ref: master
-
       # Update the version.properties file with the new version
       - name: Update version.properties
         run: |
@@ -67,4 +62,5 @@ jobs:
           git config --local user.name "GitHub Action"
           git add version.properties
           git commit -m "Bump version to $NEW_VERSION"
-          git push origin master
+          git tag $NEW_VERSION
+          git push origin master --tags
