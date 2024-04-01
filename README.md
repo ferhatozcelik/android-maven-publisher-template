@@ -91,6 +91,7 @@ gpg --armor --export GPG_ID > mykey.asc
 ```
 
 ## Kotlin DSL Publish Module
+```
 module_name-publish/
 │
 ├── .gitignore
@@ -99,7 +100,7 @@ module_name-publish/
     └── main/
         └── kotlin/        // Source code directory for the module
              └── library-publish.gradle.kts // Gradle script for configuring library publishing
-
+```
 
 In this structure:
 
