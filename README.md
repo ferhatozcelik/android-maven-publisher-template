@@ -100,6 +100,7 @@ module_name-publish/
         └── kotlin/        // Source code directory for the module
              └── library-publish.gradle.kts // Gradle script for configuring library publishing
 
+
 In this structure:
 
 => .gitignore: This file specifies patterns of files and directories that should be ignored by version control systems like Git. It helps in keeping your repository clean by excluding unnecessary files such as build artifacts and IDE configurations.
