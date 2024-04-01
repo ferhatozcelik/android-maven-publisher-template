@@ -71,9 +71,9 @@ val repositoryUsername = secretProperties.getProperty("mavenCentralUsername")
 val repositoryPassword = secretProperties.getProperty("mavenCentralPassword")
     ?: System.getenv("MAVEN_CENTRAL_PASSWORD") as String
 
-val singingKey = secretProperties.getProperty("signing.keyId") ?: System.getenv("SIGNING_KEY") as String // The key ID
-val singingSecretKeyRingFile = secretProperties.getProperty("signing.secretKeyRingFile") ?: System.getenv("SIGNING_SECRET_KEY_RING_FILE") as String // The path to the secret key ring file
-val singingPassword = secretProperties.getProperty("signing.password") ?: System.getenv("SIGNING_PASSWORD") as String // The password for the key
+val singingKey = secretProperties.getProperty("signing.keyId")
+val singingSecretKeyRingFile = secretProperties.getProperty("signing.secretKeyRingFile")
+val singingPassword = secretProperties.getProperty("signing.password")
 
 
 // Configure the publishing tasks
@@ -154,12 +154,13 @@ publishing {
 signing {
     // Use in-memory PGP keys for signing
     // The keys are retrieved from the secret properties file
-    useInMemoryPgpKeys(
-        secretProperties.getProperty("signing.keyId") as String, // The key ID
-        secretProperties.getProperty("signing.secretKeyRingFile") as String, // The path to the secret key ring file
-        secretProperties.getProperty("signing.password") as String, // The password for the key
-    )
-
+    if (singingKey != null && singingSecretKeyRingFile != null && singingPassword != null) {
+        useInMemoryPgpKeys(
+            singingKey, // The key ID
+            singingSecretKeyRingFile, // The path to the secret key ring file
+            singingPassword // The password for the key
+        )
+    }
     // Sign the "release" publication
     sign(publishing.publications["release"].name)
 }
