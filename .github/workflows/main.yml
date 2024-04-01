@@ -14,8 +14,8 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: 17
-          gpg-private-key: GPG_PRIVATE_KEY
-          gpg-passphrase: GPG_PASSPHRASE
+          gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }} # Assuming you've stored your GPG private key as a GitHub secret
+          gpg-passphrase: ${{ secrets.GPG_PASSPHRASE }} # The environment variable for the GPG private key passphrase
       - name: Build
         run: chmod +x ./gradlew
       - name: Build and Test
