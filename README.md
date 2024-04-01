@@ -104,15 +104,15 @@ module_name-publish/
 
 In this structure:
 
-=> .gitignore: This file specifies patterns of files and directories that should be ignored by version control systems like Git. It helps in keeping your repository clean by excluding unnecessary files such as build artifacts and IDE configurations.
+- .gitignore: This file specifies patterns of files and directories that should be ignored by version control systems like Git. It helps in keeping your repository clean by excluding unnecessary files such as build artifacts and IDE configurations.
 
-=> build.gradle.kts: This is the Gradle build script for the module. It defines dependencies, tasks, and configurations related to building and packaging the module. You would typically configure the publishing settings within this file, such as specifying the Maven repository URL, group ID, artifact ID, version, etc.
+- build.gradle.kts: This is the Gradle build script for the module. It defines dependencies, tasks, and configurations related to building and packaging the module. You would typically configure the publishing settings within this file, such as specifying the Maven repository URL, group ID, artifact ID, version, etc.
 
-=> src/main/kotlin/: This directory is the source code directory for your module. You would place your Kotlin source files here.
+- src/main/kotlin/: This directory is the source code directory for your module. You would place your Kotlin source files here.
 
-=> src/main/kotlin/library-publish.gradle.kts: This file seems to be intended for configuring library publishing settings specific to your module. While it's unconventional to place a Gradle script directly inside the src/ directory, it's possible that you've organized it this way for your project's specific structure. This script might contain configurations related to publishing the module to a Maven repository or other publishing-related tasks.
+- src/main/kotlin/library-publish.gradle.kts: This file seems to be intended for configuring library publishing settings specific to your module. While it's unconventional to place a Gradle script directly inside the src/ directory, it's possible that you've organized it this way for your project's specific structure. This script might contain configurations related to publishing the module to a Maven repository or other publishing-related tasks.
 
-=> Overall, this structure seems suitable for managing a Gradle-based module in your project. Make sure to populate the src/main/kotlin/ directory with your Kotlin source files and configure the build.gradle.kts script with the necessary dependencies and build settings. Additionally, ensure that the .gitignore file includes patterns to ignore build artifacts and any other files that shouldn't be committed to version control.
+- Overall, this structure seems suitable for managing a Gradle-based module in your project. Make sure to populate the src/main/kotlin/ directory with your Kotlin source files and configure the build.gradle.kts script with the necessary dependencies and build settings. Additionally, ensure that the .gitignore file includes patterns to ignore build artifacts and any other files that shouldn't be committed to version control.
 
 #### settings.gradle.kts
 
@@ -409,8 +409,8 @@ Ensure that these environment variables are securely stored and accessed only by
 
 
 ## Example Maven Repository
-https://mvnrepository.com/artifact/com.ferhatozcelik/iot
-https://mvnrepository.com/artifact/com.ferhatozcelik/example
+- https://mvnrepository.com/artifact/com.ferhatozcelik/iot
+- https://mvnrepository.com/artifact/com.ferhatozcelik/example
 
 ## Author
 👤 Ferhat OZCELIK
