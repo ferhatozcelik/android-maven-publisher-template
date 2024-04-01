@@ -27,11 +27,18 @@ jobs:
       - name: Write value to Properties-file
         uses: christian-draeger/write-properties@1.1.0
         with:
-          path: './version.properties'
+          path: 'version.properties'
           property: |
             'example'
           value: |
             "${{ steps.release_title.outputs.title }}"
+
+      - name: Read value from Properties-file
+        uses: christian-draeger/read-properties@1.1.0
+        with:
+          path: 'version.properties'
+          property: 'example'
+        id: read_properties
 
       # Java 11 is required to build the project
       - name: Set up JDK 11
