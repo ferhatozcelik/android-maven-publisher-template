@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.ferhatozcelik.library-example"
+    namespace = "com.ferhatozcelik.example"
     compileSdk = 34
 
     defaultConfig {
