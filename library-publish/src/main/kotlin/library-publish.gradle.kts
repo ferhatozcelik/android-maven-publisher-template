@@ -43,8 +43,8 @@ if (secretPropertiesFile.exists()) {
 val pomName = "Library Example"
 val pomDescription = "Maven plugin for publishing Android libraries"
 val libVersionName =
-    versionProperties.getProperty("library") as String + if (isSnapshot) snapshotIdentifier else ""
-val artifactName = "library"
+    versionProperties.getProperty("library-example") as String + if (isSnapshot) snapshotIdentifier else ""
+val artifactName = "library-example"
 
 // Maven Central properties
 val mavenCentralUrl = uri("https://s01.oss.sonatype.org/content/repositories/releases/")
@@ -66,16 +66,6 @@ val scmDevConnection = mavenProperties.getProperty("SCM_DEV_CONNECTION") as Stri
 // Load the repository credentials from the secret properties
 val repositoryUsername = System.getenv("MAVEN_CENTRAL_USERNAME") as String
 val repositoryPassword = System.getenv("MAVEN_CENTRAL_PASSWORD") as String
-
-println(group)
-println(projectUrl)
-
-println(developerId)
-println(developerName)
-println(scmConnection)
-println(scmDevConnection)
-println(repositoryUsername)
-println(repositoryPassword)
 
 // Configure the publishing tasks
 publishing {

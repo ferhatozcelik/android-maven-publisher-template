@@ -1,4 +1,4 @@
-package com.ferhatozcelik.library
+package com.ferhatozcelik.`library-example`
 
 import org.junit.Test
 

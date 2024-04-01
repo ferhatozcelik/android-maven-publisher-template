@@ -1,4 +1,4 @@
-package com.ferhatozcelik.library
+package com.ferhatozcelik.`library-example`
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

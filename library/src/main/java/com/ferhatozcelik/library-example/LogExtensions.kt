@@ -1,4 +1,4 @@
-package com.ferhatozcelik.library
+package com.ferhatozcelik.`library-example`
 
 import android.app.Activity
 import android.util.Log
