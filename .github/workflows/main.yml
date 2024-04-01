@@ -23,22 +23,17 @@ jobs:
         id: release_title
         run: echo "::set-output name=title::${{ github.event.release.name }}"
 
-      # Project version is stored in version.properties file update it with the release title
-      - name: Write value to Properties-file
-        uses: christian-draeger/write-properties@1.1.0
+      - name: Version properties file update
+        uses: dschanoeh/change-property@v1
         with:
-          path: 'version.properties'
-          property: |
-            'example'
-          value: |
-            "${{ steps.release_title.outputs.title }}"
+          file: version.properties
+          property: example
+          value: ${{ steps.release_title.outputs.title }}
 
-      - name: Read value from Properties-file
-        uses: christian-draeger/read-properties@1.1.0
-        with:
-          path: 'version.properties'
-          property: 'example'
-        id: read_properties
+      - name: Version properties file read
+        run: |
+          echo "Version: $(cat version.properties)"
+        
 
       # Java 11 is required to build the project
       - name: Set up JDK 11
