@@ -1,8 +1,10 @@
 # Android Maven Publisher Template
 
+The Android Maven Publisher Template is a project template designed to assist Android developers in publishing their libraries to Maven repositories. It simplifies the configuration of Gradle projects for publishing Android libraries, making it easier for developers to share their work with the community.
+
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-[![Release](https://img.shields.io/github/v/release/yourusername/your-repo.svg)](https://github.com/yourusername/your-repo/releases)
-[![Build Status](https://travis-ci.org/yourusername/your-repo.svg?branch=master)](https://travis-ci.org/yourusername/your-repo)
+[![Release](https://img.shields.io/github/v/release/ferhatozcelik/example.svg)](https://github.com/ferhatozcelik/example/releases)
+[![Build Status](https://travis-ci.org/ferhatozcelik/example.svg?branch=master)](https://travis-ci.org/ferhatozcelik/example)
 
 This is a template project demonstrating the use of the android-maven-publisher plugin to publish Android libraries to Maven repositories.
 
@@ -328,3 +330,86 @@ DEVELOPER_NAME=Ferhat OZCELIK
 example=1.0.0
 
 ```
+
+
+## GITHUB Actions publish
+
+main.yml
+```yml
+
+name: Publish to Maven Central
+
+# create a new release on GitHub to trigger this workflow
+on:
+  release:
+    types: [ created ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      MAVEN_CENTRAL_USERNAME: ${{ secrets.MAVEN_CENTRAL_USERNAME }} # Maven Central username
+      MAVEN_CENTRAL_PASSWORD: ${{ secrets.MAVEN_CENTRAL_PASSWORD }} # Maven Central password
+      GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }} # GPG private key  -----BEGIN PGP PRIVATE KEY BLOCK----- XXXXXXX  -----END PGP PRIVATE KEY BLOCK-----
+      GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }} # GPG passphrase
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Get the release title from the GitHub release
+      - name: Get release title
+        id: release_title
+        run: echo "::set-output name=title::${{ github.event.release.name }}"
+
+      - name: Version properties file update
+        uses: dschanoeh/change-property@v1
+        with:
+          file: version.properties
+          property: example
+          value: ${{ steps.release_title.outputs.title }}
+
+      - name: Version properties file read
+        run: |
+          echo "Version: $(cat version.properties)"
+      
+
+      # Java 11 is required to build the project
+      - name: Set up JDK 11
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+          gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
+          gpg-passphrase: ${{ secrets.GPG_PASSPHRASE }}
+
+      - name: Build with Gradle
+        run: gradle build
+
+      # Publish the project to Maven Central
+      - name: Publish to GitHub Packages
+        run: gradle publish
+        env:
+          USERNAME: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
+          PASSWORD: ${{ secrets.MAVEN_CENTRAL_PASSWORD }}
+
+```
+### Environment Variables
+
+Before building or publishing your library, make sure to set the following environment variables:
+
+- `GPG_PASSPHRASE`: The passphrase for your GPG private key.
+- `GPG_PRIVATE_KEY`: The GPG private key used for signing artifacts.
+- `MAVEN_CENTRAL_USERNAME`: Your Maven Central username for publishing artifacts.
+- `MAVEN_CENTRAL_PASSWORD`: Your Maven Central password for publishing artifacts.
+
+Ensure that these environment variables are securely stored and accessed only by authorized users or automated processes. Avoid exposing sensitive information in your repository or public documentation.
+
+
+## Author
+👤 Ferhat OZCELIK
+
+Github: @ferhatozcelik
+LinkedIn:https://www.linkedin.com/in/ferhatozcelik/
+Show your support
+Give a ⭐️ if this project helped you!
