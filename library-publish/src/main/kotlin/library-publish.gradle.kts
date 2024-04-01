@@ -42,8 +42,7 @@ if (secretPropertiesFile.exists()) {
 // Define properties
 val pomName = "Library Example"
 val pomDescription = "Maven plugin for publishing Android libraries"
-val libVersionName =
-    versionProperties.getProperty("example") as String + if (isSnapshot) snapshotIdentifier else ""
+val libVersionName = versionProperties.getProperty("example") as String + if (isSnapshot) snapshotIdentifier else ""
 val artifactName = "example"
 
 // Maven Central properties
