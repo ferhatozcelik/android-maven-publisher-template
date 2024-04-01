@@ -10,9 +10,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Set up JDK 17
-        uses: actions/setup-java@v2
+        uses: actions/setup-java@v4
         with:
-          distribution: 'temurin'
+          distribution: 'zulu'
           java-version: 17
           gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }} # Assuming you've stored your GPG private key as a GitHub secret
           gpg-passphrase: ${{ secrets.GPG_PASSPHRASE }} # The environment variable for the GPG private key passphrase
@@ -20,6 +20,8 @@ jobs:
         run: chmod +x ./gradlew
       - name: Build and Test
         run: ./gradlew build
+
+
       - name: Publish to Maven Central
         env:
           OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
