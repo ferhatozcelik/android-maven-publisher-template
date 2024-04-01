@@ -406,6 +406,10 @@ Before building or publishing your library, make sure to set the following envir
 Ensure that these environment variables are securely stored and accessed only by authorized users or automated processes. Avoid exposing sensitive information in your repository or public documentation.
 
 
+## Example Maven Repository
+https://mvnrepository.com/artifact/com.ferhatozcelik/iot
+https://mvnrepository.com/artifact/com.ferhatozcelik/example
+
 ## Author
 👤 Ferhat OZCELIK
 
