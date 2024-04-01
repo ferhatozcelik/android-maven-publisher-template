@@ -56,6 +56,8 @@ jobs:
 
       # Update the version.properties file with the new version
       - name: Update version.properties
+        with:
+          ref: master
         run: |
           NEW_VERSION="${{ steps.release_title.outputs.title }}"
           git config --local user.email "action@github.com"
