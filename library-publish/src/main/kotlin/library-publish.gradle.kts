@@ -64,12 +64,9 @@ val developerName = mavenProperties.getProperty("DEVELOPER_NAME") as String
 val scmConnection = mavenProperties.getProperty("SCM_CONNECTION") as String
 val scmDevConnection = mavenProperties.getProperty("SCM_DEV_CONNECTION") as String
 
-
 // Load the repository credentials from the secret properties
-val repositoryUsername = secretProperties.getProperty("mavenCentralUsername")
-    ?: System.getenv("MAVEN_CENTRAL_USERNAME") as String
-val repositoryPassword = secretProperties.getProperty("mavenCentralPassword")
-    ?: System.getenv("MAVEN_CENTRAL_PASSWORD") as String
+val repositoryUsername = secretProperties.getProperty("mavenCentralUsername") ?: System.getenv("USERNAME") as String
+val repositoryPassword = secretProperties.getProperty("mavenCentralPassword") ?: System.getenv("TOKEN") as String
 
 val singingKey = secretProperties.getProperty("signing.keyId")
 val singingSecretKeyRingFile = secretProperties.getProperty("signing.secretKeyRingFile")
@@ -128,6 +125,8 @@ publishing {
         repositories {
             // Configure the Maven repository
             maven {
+                name = "GitHubPackages"
+                url = uri("https://maven.pkg.github.com/OWNER/REPOSITORY")
                 // Set the credentials for the Maven repository
                 credentials {
                     username = repositoryUsername
