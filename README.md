@@ -3,8 +3,7 @@
 The Android Maven Publisher Template is a project template designed to assist Android developers in publishing their libraries to Maven repositories. It simplifies the configuration of Gradle projects for publishing Android libraries, making it easier for developers to share their work with the community.
 
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-[![Release](https://img.shields.io/github/v/release/ferhatozcelik/example.svg)](https://github.com/ferhatozcelik/example/releases)
-[![Build Status](https://travis-ci.org/ferhatozcelik/example.svg?branch=master)](https://travis-ci.org/ferhatozcelik/example)
+[![Core](https://img.shields.io/maven-central/v/com.ferhatozcelik/example.svg)](https://search.maven.org/artifact/com.ferhatozcelik/example)
 
 This is a template project demonstrating the use of the android-maven-publisher plugin to publish Android libraries to Maven repositories.
 
