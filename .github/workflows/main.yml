@@ -16,6 +16,9 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '17'
+          gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
+          gpg-passphrase: ${{ secrets.GPG_PASSPHRASE }}
+
 
       - name: Build with Gradle
         run: gradle build

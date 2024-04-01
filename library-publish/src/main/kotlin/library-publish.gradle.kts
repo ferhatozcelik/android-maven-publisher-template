@@ -51,7 +51,7 @@ val mavenCentralUrl = uri("https://s01.oss.sonatype.org/content/repositories/rel
 val mavenSnapshotUrl = uri("https://s01.oss.sonatype.org/content/repositories/snapshots/")
 
 val group = mavenProperties.getProperty("GROUP") as String
-println(group)
+
 
 val projectUrl = mavenProperties.getProperty("POM_URL") as String
 
@@ -71,7 +71,18 @@ val repositoryPassword = secretProperties.getProperty("mavenCentralPassword") ?:
 val singingKey = secretProperties.getProperty("signing.keyId")
 val singingSecretKeyRingFile = secretProperties.getProperty("signing.secretKeyRingFile")
 val singingPassword = secretProperties.getProperty("signing.password")
+println(group)
+println(projectUrl)
 
+println(developerId)
+println(developerName)
+println(scmConnection)
+println(scmDevConnection)
+println(repositoryUsername)
+println(repositoryPassword)
+println(singingKey)
+println(singingSecretKeyRingFile)
+println(singingPassword)
 
 // Configure the publishing tasks
 publishing {
