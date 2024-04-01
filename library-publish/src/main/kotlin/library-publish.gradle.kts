@@ -52,7 +52,6 @@ val mavenSnapshotUrl = uri("https://s01.oss.sonatype.org/content/repositories/sn
 
 val group = mavenProperties.getProperty("GROUP") as String
 
-
 val projectUrl = mavenProperties.getProperty("POM_URL") as String
 
 val licenseName = mavenProperties.getProperty("LICENCE_NAME") as String
@@ -65,12 +64,9 @@ val scmConnection = mavenProperties.getProperty("SCM_CONNECTION") as String
 val scmDevConnection = mavenProperties.getProperty("SCM_DEV_CONNECTION") as String
 
 // Load the repository credentials from the secret properties
-val repositoryUsername = secretProperties.getProperty("mavenCentralUsername") ?: System.getenv("MAVEN_CENTRAL_PASSWORD") as String
-val repositoryPassword = secretProperties.getProperty("mavenCentralPassword") ?: System.getenv("MAVEN_CENTRAL_USERNAME") as String
+val repositoryUsername = System.getenv("MAVEN_CENTRAL_USERNAME") as String
+val repositoryPassword = System.getenv("MAVEN_CENTRAL_PASSWORD") as String
 
-val singingKey = secretProperties.getProperty("signing.keyId")
-val singingSecretKeyRingFile = secretProperties.getProperty("signing.secretKeyRingFile")
-val singingPassword = secretProperties.getProperty("signing.password")
 println(group)
 println(projectUrl)
 
@@ -80,9 +76,6 @@ println(scmConnection)
 println(scmDevConnection)
 println(repositoryUsername)
 println(repositoryPassword)
-println(singingKey)
-println(singingSecretKeyRingFile)
-println(singingPassword)
 
 // Configure the publishing tasks
 publishing {
@@ -162,18 +155,6 @@ publishing {
 
 // Configure the signing tasks
 signing {
-    // Use in-memory PGP keys for signing
-    // The keys are retrieved from the secret properties file
-    if (singingKey != null && singingSecretKeyRingFile != null && singingPassword != null) {
-        useInMemoryPgpKeys(
-            singingKey, // The key ID
-            singingSecretKeyRingFile, // The path to the secret key ring file
-            singingPassword // The password for the key
-        )
-    }
-
-    useGpgCmd()
-
     // Sign the "release" publication
     sign(publishing.publications["release"].name)
 }
