@@ -13,3 +13,6 @@
 .externalNativeBuild
 .cxx
 local.properties
+secret.properties
+.idea
+.idea/**
