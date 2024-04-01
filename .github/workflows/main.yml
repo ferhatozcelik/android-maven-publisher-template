@@ -53,14 +53,3 @@ jobs:
         env:
           USERNAME: ${{ github.actor }}
           PASSWORD: ${{ secrets.GITHUB_TOKEN }}
-
-      # Update the version.properties file with the new version
-      - name: Update version.properties
-        run: |
-          NEW_VERSION="${{ steps.release_title.outputs.title }}"
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git add version.properties
-          git commit -m "Bump version to $NEW_VERSION"
-          git tag $NEW_VERSION
-          git push origin master --tags
