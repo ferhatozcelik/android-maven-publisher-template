@@ -54,10 +54,13 @@ jobs:
           USERNAME: ${{ github.actor }}
           PASSWORD: ${{ secrets.GITHUB_TOKEN }}
 
-      # Update the version.properties file with the new version
-      - name: Update version.properties
+      - name: Checkout master
+        uses: actions/checkout@v4
         with:
           ref: master
+
+      # Update the version.properties file with the new version
+      - name: Update version.properties
         run: |
           NEW_VERSION="${{ steps.release_title.outputs.title }}"
           git config --local user.email "action@github.com"
