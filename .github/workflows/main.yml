@@ -1,5 +1,6 @@
 name: Publish to Maven Central
 
+# create a new release on GitHub to trigger this workflow
 on:
   release:
     types: [ created ]
@@ -8,10 +9,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      MAVEN_CENTRAL_USERNAME: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
-      MAVEN_CENTRAL_PASSWORD: ${{ secrets.MAVEN_CENTRAL_PASSWORD }}
-      GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
-      GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+      MAVEN_CENTRAL_USERNAME: ${{ secrets.MAVEN_CENTRAL_USERNAME }} # Maven Central username
+      MAVEN_CENTRAL_PASSWORD: ${{ secrets.MAVEN_CENTRAL_PASSWORD }} # Maven Central password
+      GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }} # GPG private key  -----BEGIN PGP PRIVATE KEY BLOCK----- XXXXXXX  -----END PGP PRIVATE KEY BLOCK-----
+      GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }} # GPG passphrase
 
     steps:
       - name: Checkout code
@@ -49,9 +50,7 @@ jobs:
 
       - name: Update version.properties
         run: |
-          VERSION=$(cat version.properties)
-          NEW_VERSION="${{ steps.release_title.outputs.title }}" # Use release title as new version
-          echo "version=$NEW_VERSION" > version.properties
+          NEW_VERSION="${{ steps.release_title.outputs.title }}"
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add version.properties
