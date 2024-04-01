@@ -171,6 +171,9 @@ signing {
             singingPassword // The password for the key
         )
     }
+
+    useGpgCmd()
+
     // Sign the "release" publication
     sign(publishing.publications["release"].name)
 }
