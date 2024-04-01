@@ -33,7 +33,7 @@ jobs:
       - name: Version properties file read
         run: |
           echo "Version: $(cat version.properties)"
-        
+      
 
       # Java 11 is required to build the project
       - name: Set up JDK 11
